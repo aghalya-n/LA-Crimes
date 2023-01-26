@@ -5,7 +5,7 @@
 |   Info      |        Description     |
 | ----------- | ---------------------- |
 | TeamID      |        Team-048        |
-| TeamName    |         sample         |
+| TeamName    |         NNCW           |
 | Captain     |  Sailaja Nallacheruvu  |
 | Captain     |  snall6@illinois.edu   |
 | Member1     |   Aghalya Narayanan    |
