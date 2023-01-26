@@ -1,27 +1,28 @@
-**Basic Information**
+# team048-NNCW
 
-Team Id : Team-048
+## Basic Information
 
-TeamName : 411Project
+|   Info      |        Description     |
+| ----------- | ---------------------- |
+| TeamID      |        Team-048        |
+| TeamName    |         sample         |
+| Captain     |  Sailaja Nallacheruvu  |
+| Captain     |  snall6@illinois.edu   |
+| Member1     |   Aghalya Narayanan    |
+| Member1     |  aghalya2@illinois.edu |
+| Member2     |      Matthew Chung     |
+| Member2     | mmchung3@illinois.edu  |
+| Member3     |       Calvin Wu        |
+| Member3     |   qiwu4@illinois.edu   |
 
-Captain : Sailaja Nallacheruvu <snall6@illinois.edu>
+## Project Information
 
-Member 1 : Aghalya Narayanan <aghalya2@illinois.edu>
+|   Info      |        Description     |
+| ----------- | ---------------------- |
+|  Title      |       ProjectTitle     |
+| System URL  |      link_to_system    |
+| Video Link  |      link_to_video     |
 
-Member 2 : Matthew Chung <mmchung3@illinois.edu>
+## Project Summary
 
-Member 3 : Calvin Wu <qiwu4@illinois.edu>
-
-***
-
-**Project Information**
-
-Title :
-
-System URL :
-
-Video Link :
-
-***
-
-**Project Summary**
+This is a summary of the project!
