@@ -1,75 +1,45 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
-import Modal from "react-modal";
+import React, {useEffect, useState} from 'react';
 import './home.css';
-import axios from 'axios';
+
 const Home = () => {
-  const [input, setInput] = useState("");
-  const areas = [ {"name": '77th Street',
-                    "num": 1},
-                  {"name": 'Central',
-                    "num": 2},
-                  {"name": 'Devonshire', 
-                  "num": 3},
-                  {"name": 'Foothill',
-                  "num": 4},
-                  {"name": 'Harbor',
-                  "num": 5},
-                  {"name": 'Hollenbeck',
-                  "num": 6},
-                  {"name": 'Hollywood',
-                  "num": 7},
-                  {"name": 'Mission',
-                  "num": 8},
-                  {"name": 'N. Hollywood',
-                  "num": 9},
-                  {"name": 'Newton',
-                  "num": 10},
-                  {"name": 'Northeast',
-                  "num": 11},
-                  {"name": 'Olympic',
-                  "num": 12},
-                  {"name": 'Pacific',
-                  "num": 13},
-                  {"name": 'Rampart',
-                  "num": 14},
-                  {"name": 'Southeast',
-                  "num": 15},
-                  {"name": 'Southwest',
-                  "num": 16},
-                  { "name": 'Topanga',
-                  "num": 17},
-                  { "name": 'Van Nuys',
-                  "num": 18},
-                  {"name": 'West LA',
-                  "num": 19},
-                  {"name": 'West Valley',
-                  "num": 20},
-                  { "name": 'Wilshire',
-                  "num": 21}
-                ];
+  //variable from text input
+  const [neighborhood, setNeighborhood] = useState("")
+  const [myData, setMyData] = useState([{}])
 
-return (
-<div className='report'>
-  <h1>Update a crime to us:</h1>
-    <form onSubmit={handleSubmit}>
-      <label>
-        Input:
-        <input type="text" value={input} onChange={(e) => getReports(e.target.value)} />
-      </label>
+  useEffect(() => {
+    fetch('/create').then(
+      response => response.json()
+    ).then(data => setMyData(data.myData))
+  }, []);
 
-      <button type="search">Enter</button>
-    </form>
+  return (
+    //what shows on page
+   <div className="homePage">
+    <Center><h1>Neighborhood Search!</h1></Center>
 
-    <Modal isOpen={isSubmitted} onRequestClose={handleModalClose} className="modal" overlayClassName="modal-overlay">
-        <div className="modal-content">
-          <h2 className="modal-title">Done!</h2>
-          <button className="modal-close" onClick={handleModalClose}>Close</button>
-        </div>
-      </Modal>
+    <Center><div className="form">
+    <Center><label>Enter Neighborhood Here: </label></Center>
+    <Center><input type="text" name="areaName" value={neighborhood} onChange={(e)=>setNeighborhood(e.target.value)}/></Center>
 
-</div>
-);
+    <Center><button className="enter" onClick={useEffect}>Submit</button></Center>
+    </div></Center>
+    <Center><h5>You are searching for crimes in {neighborhood}</h5></Center>
+    {/* output data from sql query here NOT SURE HOW!!! */}
+   </div>
+  );
 };
-  
 export default Home;
+
+function Center({children}) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
