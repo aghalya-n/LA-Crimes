@@ -21,11 +21,17 @@ ma=Marshmallow(app)
 mycursor = mydb.cursor()
 
 
-@app.route('/create', methods=['GET'])
+@app.route('/', methods=['GET'])
+
+def handle_request():
+    response = get_crimes()
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
 def get_crimes():
-    mycursor.execute("SELECT ReportId, WeaponUsed, CaseStatus, Address, CrimeCd FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) WHERE AreaName = {neighborhood}")
+    mycursor.execute("SELECT ReportId, WeaponUsed, CaseStatus, Address, CrimeCd FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) WHERE AreaName = %s")
     data = mycursor.fetchall() 
-    return render_template('home.js', data=data)
+    return jsonify(data)
 
 if __name__ == "__main__":
     # run backend server on http://localhost:5000/
