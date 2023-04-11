@@ -109,8 +109,14 @@ def handle_request():
     
     elif request.method == 'GET':
         # handle GET request and return response
-        response = get_crimes()
-
+        #multiple potential responses?
+        if request.args.get('AreaName') == 'xyz':
+            response = get_query1()
+        elif request.args.get('AreaName') == 'abc':
+            response = get_query2()
+        else:
+            response = get_crimes()
+        # response = get_crimes()
         return response
 
 
@@ -189,5 +195,49 @@ def get_crimes():
 
     val = (AreaName,)
     mycursor.execute(sql, val)
+    data = mycursor.fetchall()
+    return jsonify(data)
+
+
+def get_query1():
+    mydb = mysql.connector.connect(
+        host="34.172.187.158",
+        user="root",
+        password="nncw",
+        database="SafeLA"
+    )
+
+    mycursor = mydb.cursor()
+
+    sql = '''   SELECT DISTINCT CrimeDesc, COUNT(CrimeCd)
+                FROM Report r LEFT JOIN Crime c USING(CrimeCd)
+                WHERE CaseStatus = "Invest Cont"
+                GROUP BY CrimeCd
+                ORDER BY COUNT(CrimeCd) DESC
+          '''
+    mycursor.execute(sql)
+    data = mycursor.fetchall()
+    return jsonify(data)
+
+def get_query2():
+    mydb = mysql.connector.connect(
+        host="34.172.187.158",
+        user="root",
+        password="nncw",
+        database="SafeLA"
+    )
+
+    mycursor = mydb.cursor()
+
+    sql = '''   SELECT DISTINCT AreaName, DistrictId 
+                FROM AreaInLA a NATURAL JOIN Location l1 WHERE (
+                SELECT COUNT(ReportId) 
+                FROM Report r JOIN Location l2 USING(Address) 
+                WHERE l1.DistrictId = l2.DistrictId
+                GROUP BY l2.DistrictId
+                Having COUNT(ReportId) > 10)
+                ORDER BY DistrictId
+          '''
+    mycursor.execute(sql)
     data = mycursor.fetchall()
     return jsonify(data)
