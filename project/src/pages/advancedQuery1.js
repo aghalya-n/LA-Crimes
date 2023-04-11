@@ -27,11 +27,11 @@ const AdvancedQuery1 = () => {
 
   return (
     <div>
-
       <Link to="/">
         <button className="return-button" >Home</button>
       </Link>
       <Link to="/advancedQuery2">
+        
         <button className="aq2-button" >Even More Info!</button>
     </Link>
       <Center><h1>See the number of ongoing crime investigations by crime type below!</h1></Center>

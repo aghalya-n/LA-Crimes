@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import './home.css';
 import axios from 'axios';
 
@@ -14,11 +15,11 @@ const Home = () => {
         url: 'http://127.0.0.1:5000/',
         method: 'GET',
         params: {
-          AreaName: AreaName,
+          AreaName: AreaName
         },
       });
 
-      const data = response.data;
+      const data = response.data
       console.log(data);
       setCrimes(data);
     } catch (error) {
@@ -31,6 +32,15 @@ const Home = () => {
   return (
     //what shows on page
    <div className="homePage">
+
+    <Link to="/advancedQuery1">
+        <button className="aq1-button" >More Info!</button>
+    </Link>
+    <Link to="/report">
+        <button className="reportc" >Report A Crime</button>
+    </Link>
+
+
     <Center><h1>Neighborhood Search!</h1></Center>
 
     <Center><div className="form">
