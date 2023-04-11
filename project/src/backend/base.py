@@ -173,10 +173,8 @@ def delete_report():
 
     return jsonify({'message': 'Deleted successfully'})
 
-
 def get_crimes():
     AreaName = request.args.get('AreaName')
-    print(AreaName)
     mydb = mysql.connector.connect(
         host="34.172.187.158",
         user="root",
@@ -186,7 +184,7 @@ def get_crimes():
 
     mycursor = mydb.cursor()
 
-    sql = '''SELECT ReportId, WeaponUsed, CaseStatus, Address, CrimeCd 
+    sql = '''SELECT ReportId, CaseStatus, WeaponUsed, Address, CrimeCd, AreaName 
              FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) WHERE AreaName = %s'''
 
     val = (AreaName,)
