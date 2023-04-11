@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-from flask_marshmallow import Marshmallow
+
 import mysql.connector
 import requests
 

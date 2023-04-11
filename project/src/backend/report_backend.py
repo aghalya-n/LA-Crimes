@@ -92,7 +92,7 @@ CORS(app)
 # your existing code for create_report() function goes here
 
 
-@app.route('/', methods=['POST', 'DELETE'])
+@app.route('/', methods=['POST', 'DELETE', 'GET'])
 
 def handle_request():
     if request.method == 'POST':
@@ -106,6 +106,13 @@ def handle_request():
         response = delete_report()
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+    
+    elif request.method == 'GET':
+        # handle GET request and return response
+        response = get_crimes()
+
+        return response
+
 
 
 if __name__ == '__main__':
@@ -128,7 +135,6 @@ def create_report():
       database="SafeLA"
     )
 
-
     # Create a cursor object to execute SQL queries
     mycursor = mydb.cursor()
 
@@ -141,7 +147,7 @@ def create_report():
     mydb.commit()
 
     # Return a JSON response indicating success
-    return jsonify({'success': True})
+    return jsonify({'message': 'Updated successfully'})
 
 
 def delete_report():
@@ -166,3 +172,24 @@ def delete_report():
     mydb.commit()
 
     return jsonify({'message': 'Deleted successfully'})
+
+
+def get_crimes():
+    AreaName = request.args.get('AreaName')
+    print(AreaName)
+    mydb = mysql.connector.connect(
+        host="34.172.187.158",
+        user="root",
+        password="nncw",
+        database="SafeLA"
+    )
+
+    mycursor = mydb.cursor()
+
+    sql = '''SELECT ReportId, WeaponUsed, CaseStatus, Address, CrimeCd 
+             FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) WHERE AreaName = %s'''
+
+    val = (AreaName,)
+    mycursor.execute(sql, val)
+    data = mycursor.fetchall()
+    return jsonify(data)

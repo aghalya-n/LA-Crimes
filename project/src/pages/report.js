@@ -44,7 +44,8 @@ const Report = () => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    event.preventDefault();
     try {
       const response = await axios({
         url: 'http://127.0.0.1:5000/',
@@ -68,7 +69,7 @@ const Report = () => {
   return (
     <div className='report'>
       <h1>Update a crime to us:</h1>
-      <form onSubmit={handleSubmit}>
+      <form >
 
         <label>
           ReportID:
@@ -104,7 +105,7 @@ const Report = () => {
           <input type="text" value={weaponUsed} onChange={(e) => setWeaponUsed(e.target.value)} />
         </label>
 
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={handleSubmit}>Submit</button>
 
         <button className="delete-button" onClick={handleDelete}>Delete</button>
 
