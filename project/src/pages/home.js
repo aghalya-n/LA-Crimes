@@ -42,7 +42,26 @@ const Home = () => {
     </div></Center>
     <Center><h5>You are searching for crimes in {AreaName}</h5></Center>
     {/* output data from sql query here NOT SURE HOW!!! */}
-    {crimes}
+    {/* <Center><h5>{numCrimes} crimes have occurred in {AreaName} since 2020. Read more below. </h5></Center> */}
+    <Center><div className="output">
+      <table>
+        <tr>
+           <td>ReportID</td>
+           <td>Case Status</td>
+           <td>Weapon Used</td>
+           <td>Address</td>
+           <td>Crime Code</td>
+           <td>Neighborhood</td>
+        </tr>
+        {crimes.map((item) => (
+  <tr>
+    {item.map((d) => (
+      <td>{d}</td>
+    ))}
+  </tr>
+))}
+       </table>
+    </div></Center>
    </div>
   );
 };
