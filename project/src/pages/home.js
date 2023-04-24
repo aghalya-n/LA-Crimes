@@ -15,7 +15,8 @@ const Home = () => {
         url: 'http://127.0.0.1:5000/',
         method: 'GET',
         params: {
-          AreaName: AreaName
+          AreaName: AreaName,
+          numToCheck: 0
         },
       });
 

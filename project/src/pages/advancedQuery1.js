@@ -12,7 +12,8 @@ const AdvancedQuery1 = () => {
         url: 'http://127.0.0.1:5000/',
         method: 'GET',
         params: {
-        AreaName: "xyz"
+        AreaName: "xyz",
+        numToCheck: 0
         },
       });
 

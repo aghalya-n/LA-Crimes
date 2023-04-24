@@ -220,6 +220,7 @@ def get_query1():
     return jsonify(data)
 
 def get_query2():
+    numToCheck = request.args.get('numToCheck')
     mydb = mysql.connector.connect(
         host="34.172.187.158",
         user="root",
@@ -235,9 +236,10 @@ def get_query2():
                 FROM Report r JOIN Location l2 USING(Address) 
                 WHERE l1.DistrictId = l2.DistrictId
                 GROUP BY l2.DistrictId
-                Having COUNT(ReportId) > 10)
+                Having COUNT(ReportId) > %s)
                 ORDER BY DistrictId
           '''
-    mycursor.execute(sql)
+    val = (numToCheck,)
+    mycursor.execute(sql, val)
     data = mycursor.fetchall()
     return jsonify(data)
