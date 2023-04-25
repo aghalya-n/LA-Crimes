@@ -40,6 +40,9 @@ const Home = () => {
     <Link to="/report">
         <button className="reportc" >Report A Crime</button>
     </Link>
+    <Link to="/storedProcedure">
+        <button >Area Comparison</button>
+    </Link>
 
 
     <Center><h1>Neighborhood Search!</h1></Center>
