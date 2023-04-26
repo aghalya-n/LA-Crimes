@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import './home.css';
 import axios from 'axios';
+import MapContainer from './map';
 
 const Home = () => {
   //variable from text input
@@ -73,6 +74,7 @@ const Home = () => {
 ))}
        </table>
     </div></Center>
+    <MapContainer/>
    </div>
   );
 };
