@@ -20,12 +20,13 @@ const StoredProcedure = () => {
       const data = response.data
       console.log(data);
       setRes(data);
+      
     } catch (error) {
       console.error(error);
     }
   };
 
-
+  const rows = res.map(item => Object.values(item));
   return (
     <div>
       <Link to="/">
@@ -41,13 +42,14 @@ const StoredProcedure = () => {
            <td>Area Name</td>
            <td>Crime Severity</td>
         </tr>
-        {res.map((item) => (
-  <tr>
-    {item.map((d) => (
-      <td>{d}</td>
-    ))}
-  </tr>
-))}
+        
+        {rows.map(row => (
+          <tr>
+            {row.map(col => (
+              <td>{col}</td>
+            ))}
+          </tr>
+        ))}
        </table>
     </div></Center>
     </div>
