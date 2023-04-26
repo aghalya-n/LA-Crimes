@@ -256,6 +256,6 @@ def get_stored_procedure():
 
     mycursor = mydb.cursor()
 
-    mycursor.execute("CALL Result()")
+    mycursor.execute("CALL StoredProcedure()")
     data = mycursor.fetchall()
     return jsonify(data)
