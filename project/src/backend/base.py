@@ -114,6 +114,8 @@ def handle_request():
             response = get_query1()
         elif request.args.get('AreaName') == 'abc':
             response = get_query2()
+        elif request.args.get('AreaName') == 'efg':
+            response = get_stored_procedure()
         else:
             response = get_crimes()
         # response = get_crimes()
@@ -241,5 +243,19 @@ def get_query2():
           '''
     val = (numToCheck,)
     mycursor.execute(sql, val)
+    data = mycursor.fetchall()
+    return jsonify(data)
+
+def get_stored_procedure():
+    mydb = mysql.connector.connect(
+        host="34.172.187.158",
+        user="root",
+        password="nncw",
+        database="SafeLA"
+    )
+
+    mycursor = mydb.cursor()
+
+    mycursor.execute("CALL Result()")
     data = mycursor.fetchall()
     return jsonify(data)
