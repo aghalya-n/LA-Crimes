@@ -255,7 +255,14 @@ def get_stored_procedure():
     )
 
     mycursor = mydb.cursor()
+    mycursor.callproc('StoredProcedure')
+    result = mycursor.stored_results()
 
-    mycursor.execute("CALL StoredProcedure()")
-    data = mycursor.fetchall()
+    # Loop over the rows returned by the iterator and fetch them one by one
+    data = []
+    for row in result:
+        row_data = row.fetchall()
+        for r in row_data:
+            data.append(dict(zip(row.column_names, r)))
+
     return jsonify(data)

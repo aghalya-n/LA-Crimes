@@ -42,7 +42,7 @@ const Home = () => {
         <button className="reportc" >Report A Crime</button>
     </Link>
     <Link to="/storedProcedure">
-        <button >Area Comparison</button>
+        <button className='Areac'>Area Comparison</button>
     </Link>
 
 
