@@ -1,0 +1,8 @@
+CREATE DEFINER=`root`@`%` TRIGGER `report_BEFORE_INSERT` BEFORE INSERT ON `Report`
+FOR EACH ROW
+BEGIN
+    SET @address = (Select Address FROM Location WHERE Address = new.Address);
+    IF @address IS NULL THEN
+        INSERT INTO Location(Address) VALUES (new.Address);
+    END IF;
+END;

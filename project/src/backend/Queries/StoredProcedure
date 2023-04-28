@@ -1,0 +1,48 @@
+CREATE DEFINER=`root`@`%` PROCEDURE `StoredProcedure`()
+BEGIN
+	DECLARE exit_loop BOOLEAN DEFAULT FALSE;
+    DECLARE varCrimeSeverity VARCHAR(255);
+    DECLARE varAreaId VARCHAR(255);
+    DECLARE varAreaName VARCHAR(255);
+    DECLARE varReports FLOAT;
+    DECLARE varAvgReports FLOAT;
+    DECLARE cur CURSOR FOR (SELECT AreaId, AreaName, COUNT(ReportId) AS Reports FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) GROUP BY AreaId, AreaName);
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET exit_loop = TRUE;
+    
+	DROP TABLE IF EXISTS TemporaryTable;
+    
+	CREATE TABLE TemporaryTable(
+        AreaId int,
+        AreaName VARCHAR(255),
+        CrimeSeverity VARCHAR(255)
+    );
+    
+	SET varAvgReports = (SELECT AVG(count) FROM (SELECT COUNT(ReportId) as count, AreaId FROM Report NATURAL JOIN Location JOIN AreaInLA USING (AreaId) GROUP BY AreaId, AreaName) as counts);
+
+
+   OPEN cur;
+        cloop: LOOP
+			FETCH cur INTO varAreaId, varAreaName, varReports;
+
+			IF exit_loop THEN
+                LEAVE cloop;
+            END IF;
+            
+			IF varReports > varAvgReports THEN
+                SET varCrimeSeverity = "High";
+            ELSEIF varReports = varAvgReports THEN
+                SET varCrimeSeverity = "Average";
+            ELSE
+                SET varCrimeSeverity = "Low";
+            END IF;
+
+			INSERT INTO TemporaryTable VALUES (varAreaId, varAreaName, varCrimeSeverity);
+
+			
+        END LOOP cloop;
+
+    CLOSE cur;
+    
+	SELECT AreaId, AreaName, CrimeSeverity FROM TemporaryTable;
+
+END
