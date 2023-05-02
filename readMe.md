@@ -2,4 +2,9 @@
 
 readMe.md for team 048 in Project Track 1
 
-Link to our video: https://illinois.zoom.us/rec/share/TR3hta-tdSFsLCX6_0L4l5P5shNjtkg1f-g2pJa8rIJqnmDSFYGHO3BrgtyU5Ujh.bIwDlApil9He90LV?startTime=1683048043000
+[Click here to view our 411 Final Project Stage 6 Reflection](https://github.com/cs411-alawini/sp23-cs411-team048-NNCW/files/11378105/411.Final.Project.Stage.6.pdf)
+
+
+Our video:
+
+https://user-images.githubusercontent.com/92762103/235799078-d9fe9e5e-6cbb-43c9-9c5d-10a246bf6a3c.mp4
