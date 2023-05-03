@@ -4,6 +4,8 @@
 
 [Click here to download our 411 Final Project Stage 6 Reflection](https://github.com/cs411-alawini/sp23-cs411-team048-NNCW/files/11378105/411.Final.Project.Stage.6.pdf)
 
+The file can also be found in our doc folder in the repository. 
+
 
 **Our video:**
 
