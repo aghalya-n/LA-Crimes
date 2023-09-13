@@ -1,6 +1,4 @@
-# Team048-NNCW 411 Project
-
-***readMe.md for team 048 in Project Track 1***
+# Database Systems Project
 
 [Click here to download our 411 Final Project Stage 6 Reflection](https://github.com/cs411-alawini/sp23-cs411-team048-NNCW/files/11378105/411.Final.Project.Stage.6.pdf)
 
